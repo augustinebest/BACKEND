@@ -2,12 +2,10 @@ const Feedback = require('../Models/feedback');
 
 exports.addFeedback = (req, res, next) => {
     const data = {
-        name: req.body.name,
-        email: req.body.email,
         commentBody: req.body.commentBody
     }
     try {
-        if(req.body.name == null || req.body.email == null || req.body.commentBody == null || req.body.name == '' || req.body.email == '' || req.body.commentBody == '') {
+        if(req.body.commentBody == null || req.body.commentBody == '') {
             res.json({message: 'You have to fill the required field!'});
         } else {
             Feedback.create(data, (err, feedback) => {
